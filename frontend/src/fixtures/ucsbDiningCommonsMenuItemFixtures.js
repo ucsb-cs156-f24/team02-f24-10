@@ -25,7 +25,7 @@ const ucsbDiningCommonsMenuItemFixtures = {
       station: "international",
     },
   ],
-  };
+};
   
-  export { ucsbDiningCommonsMenuItemFixtures };
+export { ucsbDiningCommonsMenuItemFixtures };
   
