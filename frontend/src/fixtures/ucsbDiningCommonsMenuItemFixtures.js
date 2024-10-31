@@ -26,6 +26,6 @@ const ucsbDiningCommonsMenuItemFixtures = {
     },
   ],
 };
-  
+
 export { ucsbDiningCommonsMenuItemFixtures };
   
