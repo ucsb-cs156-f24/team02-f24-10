@@ -6,11 +6,11 @@ import OurTable, { /* ButtonColumn */ } from "main/components/OurTable";
 //   cellToAxiosParamsDelete,
 //   onDeleteSuccess,
 // } from "main/utils/UCSBDateUtils";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 // import { hasRole } from "main/utils/currentUser";
 
-export default function ArticlesTable({ dates, currentUser }) {
-  const navigate = useNavigate();
+export default function ArticlesTable({ articles, /* currentUser */ }) {
+  // const navigate = useNavigate();
 
   // const editCallback = (cell) => {
   //   navigate(`/articles/edit/${cell.row.values.id}`);
@@ -58,13 +58,13 @@ export default function ArticlesTable({ dates, currentUser }) {
   ];
 
   // if (hasRole(currentUser, "ROLE_ADMIN")) {
-  //   columns.push(
-  //     ButtonColumn("Edit", "primary", editCallback, "ArticlesTable"),
-  //   );
-  //   columns.push(
-  //     ButtonColumn("Delete", "danger", deleteCallback, "ArticlesTable"),
-  //   );
+  // columns.push(
+  //   ButtonColumn("Edit", "primary", editCallback, "ArticlesTable"),
+  // );
+  // columns.push(
+  //   ButtonColumn("Delete", "danger", deleteCallback, "ArticlesTable"),
+  // );
   // }
 
-  return <OurTable data={dates} columns={columns} testid={"ArticlesTable"} />;
+  return <OurTable data={articles} columns={columns} testid={"ArticlesTable"} />;
 }
