@@ -1,5 +1,5 @@
 import React from "react";
-import OurTable, { /* ButtonColumn */ } from "main/components/OurTable";
+import OurTable /* ButtonColumn */ from "main/components/OurTable";
 
 // import { useBackendMutation } from "main/utils/useBackend";
 // import {
@@ -9,7 +9,7 @@ import OurTable, { /* ButtonColumn */ } from "main/components/OurTable";
 // import { useNavigate } from "react-router-dom";
 // import { hasRole } from "main/utils/currentUser";
 
-export default function ArticlesTable({ articles, /* currentUser */ }) {
+export default function ArticlesTable({ articles /* currentUser */ }) {
   // const navigate = useNavigate();
 
   // const editCallback = (cell) => {
@@ -66,5 +66,7 @@ export default function ArticlesTable({ articles, /* currentUser */ }) {
   // );
   // }
 
-  return <OurTable data={articles} columns={columns} testid={"ArticlesTable"} />;
+  return (
+    <OurTable data={articles} columns={columns} testid={"ArticlesTable"} />
+  );
 }

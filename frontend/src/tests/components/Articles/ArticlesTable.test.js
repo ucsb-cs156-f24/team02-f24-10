@@ -25,7 +25,7 @@ describe("UserTable tests", () => {
         <MemoryRouter>
           <ArticlesTable
             articles={articlesFixtures.threeArticles}
-          // currentUser={currentUser}
+            // currentUser={currentUser}
           />
         </MemoryRouter>
       </QueryClientProvider>,
