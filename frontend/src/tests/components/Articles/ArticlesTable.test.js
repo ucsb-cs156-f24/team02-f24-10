@@ -23,9 +23,7 @@ describe("UserTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <ArticlesTable
-            articles={articlesFixtures.threeArticles}
-          />
+          <ArticlesTable articles={articlesFixtures.threeArticles} />
         </MemoryRouter>
       </QueryClientProvider>,
     );
