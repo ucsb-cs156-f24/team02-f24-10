@@ -18,8 +18,6 @@ describe("UserTable tests", () => {
   const queryClient = new QueryClient();
 
   test("Has the expected column headers and content for ordinary user", () => {
-    const currentUser = currentUserFixtures.userOnly;
-
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
