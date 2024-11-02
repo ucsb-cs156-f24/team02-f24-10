@@ -53,12 +53,12 @@ export default function UCSBOrganizationTable({
     },
   ];
 
-//   if (hasRole(currentUser, "ROLE_ADMIN")) {
+  if (hasRole(currentUser, "ROLE_ADMIN")) {
 //     columns.push(ButtonColumn("Edit", "primary", editCallback, testIdPrefix));
 //     columns.push(
 //       ButtonColumn("Delete", "danger", deleteCallback, testIdPrefix),
 //     );
-//   }
+  }
 
   return (
     <OurTable data={UCSBOrganizations} columns={columns} testid={testIdPrefix} />
