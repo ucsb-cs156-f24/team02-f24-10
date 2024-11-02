@@ -31,7 +31,6 @@ jest.mock("react-router-dom", () => {
   };
 });
 
-
 describe("ArticlesCreatePage tests", () => {
   const axiosMock = new AxiosMockAdapter(axios);
 
@@ -57,9 +56,7 @@ describe("ArticlesCreatePage tests", () => {
     );
 
     await waitFor(() => {
-      expect(
-        screen.getByTestId("ArticlesForm-title"),
-      ).toBeInTheDocument();
+      expect(screen.getByTestId("ArticlesForm-title")).toBeInTheDocument();
     });
   });
 
@@ -85,9 +82,7 @@ describe("ArticlesCreatePage tests", () => {
     );
 
     await waitFor(() => {
-      expect(
-        screen.getByTestId("ArticlesForm-title"),
-      ).toBeInTheDocument();
+      expect(screen.getByTestId("ArticlesForm-title")).toBeInTheDocument();
     });
 
     const titleField = screen.getByTestId("ArticlesForm-title");
@@ -98,8 +93,12 @@ describe("ArticlesCreatePage tests", () => {
     const submitButton = screen.getByTestId("ArticlesForm-submit");
 
     fireEvent.change(titleField, { target: { value: "lolol title" } });
-    fireEvent.change(urlField, { target: { value: "https://www.google.com/" } });
-    fireEvent.change(explanationField, { target: { value: "This is a different article" } });
+    fireEvent.change(urlField, {
+      target: { value: "https://www.google.com/" },
+    });
+    fireEvent.change(explanationField, {
+      target: { value: "This is a different article" },
+    });
     fireEvent.change(emailField, { target: { value: "notajay@ucsb.edu" } });
     fireEvent.change(dateAddedField, {
       target: { value: "2024-02-02T00:00" },
