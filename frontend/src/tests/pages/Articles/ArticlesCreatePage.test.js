@@ -64,11 +64,11 @@ describe("ArticlesCreatePage tests", () => {
     const queryClient = new QueryClient();
     const article = {
       id: 17,
-      title: "Hehe haha title",
-      url: "https://www.ucsb.edu/",
+      title: "lolol title",
+      url: "https://google.com/",
       explanation: "This is an article",
       email: "ajayliu@ucsb.edu",
-      dateAdded: "2022-02-02T00:00",
+      dateAdded: "2024-02-02T00:00",
     };
 
     axiosMock.onPost("/api/articles/post").reply(202, article);
@@ -97,9 +97,9 @@ describe("ArticlesCreatePage tests", () => {
       target: { value: "https://www.google.com/" },
     });
     fireEvent.change(explanationField, {
-      target: { value: "This is a different article" },
+      target: { value: "This is an article" },
     });
-    fireEvent.change(emailField, { target: { value: "notajay@ucsb.edu" } });
+    fireEvent.change(emailField, { target: { value: "ajayliu@ucsb.edu" } });
     fireEvent.change(dateAddedField, {
       target: { value: "2024-02-02T00:00" },
     });
@@ -113,12 +113,12 @@ describe("ArticlesCreatePage tests", () => {
     expect(axiosMock.history.post[0].params).toEqual({
       title: "lolol title",
       url: "https://www.google.com/",
-      explanation: "This is a different article",
-      email: "notajay@ucsb.edu",
+      explanation: "This is an article",
+      email: "ajayliu@ucsb.edu",
       dateAdded: "2024-02-02T00:00",
     });
 
-    expect(mockToast).toBeCalled(
+    expect(mockToast).toBeCalledWith(
       "New article Created - id: 17 title: lolol title",
     );
     expect(mockNavigate).toBeCalledWith({ to: "/articles" });
