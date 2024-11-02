@@ -118,9 +118,9 @@ describe("ArticlesCreatePage tests", () => {
       dateAdded: "2024-02-02T00:00",
     });
 
-    // expect(mockToast).toBeCalled(
-    //   "New article Created - id: 17 title: lolol title",
-    // );
+    expect(mockToast).toBeCalled(
+      "New article Created - id: 17 title: lolol title",
+    );
     expect(mockNavigate).toBeCalledWith({ to: "/articles" });
   });
 });
