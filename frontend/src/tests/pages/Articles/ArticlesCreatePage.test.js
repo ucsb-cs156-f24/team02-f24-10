@@ -6,7 +6,7 @@ import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
 import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
-import ArticlesCreatePage from "main/pages/Placeholder/PlaceholderCreatePage";
+import ArticlesCreatePage from "main/pages/Articles/ArticlesCreatePage";
 
 describe("ArticlesCreatePage tests", () => {
   const axiosMock = new AxiosMockAdapter(axios);
