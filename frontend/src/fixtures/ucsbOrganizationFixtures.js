@@ -1,13 +1,10 @@
 const ucsbOrganizationFixtures = {
-  oneOrganization: [
-    {
-      orgCode: "SKY",
-      orgTranslationShort: "Skydiving Club",
-      orgTranslation: "Skydiving Club at UCSB",
-      inactive: false,
-    },
-  ],
-
+  oneOrganization: {
+    orgCode: "SKY",
+    orgTranslationShort: "Skydiving Club",
+    orgTranslation: "Skydiving Club at UCSB",
+    inactive: false,
+  },
   threeOrganizations: [
     {
       orgCode: "SNU",
@@ -29,3 +26,5 @@ const ucsbOrganizationFixtures = {
     },
   ],
 };
+
+export { ucsbOrganizationFixtures };
