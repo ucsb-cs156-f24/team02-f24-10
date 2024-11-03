@@ -39,10 +39,7 @@ describe("UCSBOrganizationTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <UCSBOrganizationTable
-            organizations={[]}
-            currentUser={currentUser}
-          />
+          <UCSBOrganizationTable organizations={[]} currentUser={currentUser} />
         </MemoryRouter>
       </QueryClientProvider>,
     );
@@ -60,7 +57,7 @@ describe("UCSBOrganizationTable tests", () => {
       expect(fieldElement).not.toBeInTheDocument();
     });
   });
-/*
+
   test("Has the expected column headers, content and buttons for admin user", () => {
     // arrange
     const currentUser = currentUserFixtures.adminUser;
@@ -114,7 +111,7 @@ describe("UCSBOrganizationTable tests", () => {
     expect(deleteButton).toBeInTheDocument();
     expect(deleteButton).toHaveClass("btn-danger");
   });
-*/
+
   test("Has the expected column headers, content for ordinary user", () => {
     // arrange
     const currentUser = currentUserFixtures.userOnly;
@@ -159,7 +156,7 @@ describe("UCSBOrganizationTable tests", () => {
     expect(screen.queryByText("Delete")).not.toBeInTheDocument();
     expect(screen.queryByText("Edit")).not.toBeInTheDocument();
   });
-/*
+
   test("Edit button navigates to the edit page", async () => {
     // arrange
     const currentUser = currentUserFixtures.adminUser;
@@ -199,7 +196,7 @@ describe("UCSBOrganizationTable tests", () => {
       ),
     );
   });
-
+  /*
   test("Delete button calls delete callback", async () => {
     // arrange
     const currentUser = currentUserFixtures.adminUser;
