@@ -123,7 +123,6 @@ function App() {
             />
           </>
         )}
-        
       </Routes>
     </BrowserRouter>
   );
