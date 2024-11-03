@@ -82,7 +82,7 @@ function UCSBDiningCommonsMenuItemForm({
               data-testid="UCSBDiningCommonsMenuItemForm-station"
               id="station"
               type="text"
-              isInvalid={Boolean(errors.name)}
+              isInvalid={Boolean(errors.station)}
               {...register("station", {
                 required: "Station is required. ",
               })}
