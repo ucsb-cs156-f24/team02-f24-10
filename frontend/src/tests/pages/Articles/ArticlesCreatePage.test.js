@@ -72,7 +72,6 @@ describe("ArticlesCreatePage tests", () => {
     };
 
     axiosMock.onPost("/api/articles/post").reply(202, article);
-
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
