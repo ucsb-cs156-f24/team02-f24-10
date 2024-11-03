@@ -43,7 +43,7 @@ ThreeItemsOrdinaryUser.parameters = {
       return HttpResponse.json(systemInfoFixtures.showingNeither);
     }),
     http.get("/api/ucsbdiningcommonsmenuitems/all", () => {
-      return HttpResponse.json(ucsbDatesFixtures.threeDates);
+      return HttpResponse.json(ucsbDiningCommonsMenuItemFixtures.threeItems);
     }),
   ],
 };
