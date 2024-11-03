@@ -71,7 +71,9 @@ describe("UCSBDiningCommonsMenuItemCreatePage tests", () => {
       station: "bakery",
     };
 
-    axiosMock.onPost("/api/ucsbdiningcommonsmenuitems/post").reply(202, ucsbDiningCommonsMenuItem);
+    axiosMock
+      .onPost("/api/ucsbdiningcommonsmenuitems/post")
+      .reply(202, ucsbDiningCommonsMenuItem);
 
     render(
       <QueryClientProvider client={queryClient}>
@@ -87,10 +89,16 @@ describe("UCSBDiningCommonsMenuItemCreatePage tests", () => {
       ).toBeInTheDocument();
     });
 
-    const diningCommonsCodeField = screen.getByTestId("UCSBDiningCommonsMenuItemForm-diningCommonsCode");
+    const diningCommonsCodeField = screen.getByTestId(
+      "UCSBDiningCommonsMenuItemForm-diningCommonsCode",
+    );
     const nameField = screen.getByTestId("UCSBDiningCommonsMenuItemForm-name");
-    const stationField = screen.getByTestId("UCSBDiningCommonsMenuItemForm-station");
-    const submitButton = screen.getByTestId("UCSBDiningCommonsMenuItemForm-submit");
+    const stationField = screen.getByTestId(
+      "UCSBDiningCommonsMenuItemForm-station",
+    );
+    const submitButton = screen.getByTestId(
+      "UCSBDiningCommonsMenuItemForm-submit",
+    );
 
     fireEvent.change(diningCommonsCodeField, { target: { value: "portola" } });
     fireEvent.change(nameField, { target: { value: "chocolate chip cookie" } });
