@@ -4,8 +4,8 @@ import UCSBOrganizationTable from "main/components/UCSBOrganizations/UCSBOrganiz
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
 import { currentUserFixtures } from "fixtures/currentUserFixtures";
-import axios from "axios";
-import AxiosMockAdapter from "axios-mock-adapter";
+// import axios from "axios";
+// import AxiosMockAdapter from "axios-mock-adapter";
 
 const mockedNavigate = jest.fn();
 
