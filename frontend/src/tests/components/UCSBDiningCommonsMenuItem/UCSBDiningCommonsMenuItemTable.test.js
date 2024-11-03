@@ -1,16 +1,11 @@
-import {
-  /** fireEvent, */ render,
-  /** waitFor, */ screen,
-} from "@testing-library/react";
+import { fireEvent, render, waitFor, screen } from "@testing-library/react";
 import { ucsbDiningCommonsMenuItemFixtures } from "fixtures/ucsbDiningCommonsMenuItemFixtures";
 import UCSBDiningCommonsMenuItemTable from "main/components/UCSBDiningCommonsMenuItem/UCSBDiningCommonsMenuItemTable";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
 import { currentUserFixtures } from "fixtures/currentUserFixtures";
-/** 
 import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
-*/
 
 const mockedNavigate = jest.fn();
 
@@ -145,7 +140,7 @@ describe("UserTable tests", () => {
 
     await waitFor(() =>
       expect(mockedNavigate).toHaveBeenCalledWith(
-        "/ucsbdiningcommonsmenuitems/edit/1",
+        "/ucsbdiningcommonsmenuitem/edit/1",
       ),
     );
   });
