@@ -10,7 +10,7 @@ import OurTable from "main/components/OurTable";
 import { hasRole } from "main/utils/currentUser";
 
 export default function UCSBOrganizationTable({
-  UCSBOrganizations,
+  organizations,
   currentUser,
   testIdPrefix = "UCSBOrganizationTable",
 }) {
@@ -61,6 +61,6 @@ export default function UCSBOrganizationTable({
   }
 
   return (
-    <OurTable data={UCSBOrganizations} columns={columns} testid={testIdPrefix} />
+    <OurTable data={organizations} columns={columns} testid={testIdPrefix} />
   );
 }
