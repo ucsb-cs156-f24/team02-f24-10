@@ -237,6 +237,8 @@ describe("UCSBOrganizationTable tests", () => {
     // assert - check that the delete endpoint was called
 
     await waitFor(() => expect(axiosMock.history.delete.length).toBe(1));
+    expect(axiosMock.history.delete[0].url).toEqual("/api/ucsborganizations");
+    expect(axiosMock.history.delete[0].method).toEqual("delete");
     expect(axiosMock.history.delete[0].params).toEqual({ orgCode: "SNU" });
   });
 });
