@@ -68,7 +68,6 @@ describe("UserTable tests", () => {
     expect(deleteButton).not.toBeInTheDocument();
   });
 
-  /**
   test("Has the expected colum headers and content for adminUser", () => {
     const currentUser = currentUserFixtures.adminUser;
 
@@ -193,5 +192,4 @@ describe("UserTable tests", () => {
     await waitFor(() => expect(axiosMock.history.delete.length).toBe(1));
     expect(axiosMock.history.delete[0].params).toEqual({ id: 1 });
   });
-  */
 });
