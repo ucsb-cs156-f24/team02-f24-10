@@ -4,8 +4,8 @@ import UCSBOrganizationTable from "main/components/UCSBOrganizations/UCSBOrganiz
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
 import { currentUserFixtures } from "fixtures/currentUserFixtures";
-// import axios from "axios";
-// import AxiosMockAdapter from "axios-mock-adapter";
+import axios from "axios";
+import AxiosMockAdapter from "axios-mock-adapter";
 
 const mockedNavigate = jest.fn();
 
@@ -196,7 +196,7 @@ describe("UCSBOrganizationTable tests", () => {
       ),
     );
   });
-  /*
+
   test("Delete button calls delete callback", async () => {
     // arrange
     const currentUser = currentUserFixtures.adminUser;
@@ -239,5 +239,4 @@ describe("UCSBOrganizationTable tests", () => {
     await waitFor(() => expect(axiosMock.history.delete.length).toBe(1));
     expect(axiosMock.history.delete[0].params).toEqual({ orgCode: "SNU" });
   });
-  */
 });
