@@ -5,7 +5,6 @@ import UCSBOrganizationForm from "main/components/UCSBOrganizations/UCSBOrganiza
 import { ucsbOrganizationFixtures } from "fixtures/ucsbOrganizationFixtures";
 
 import { QueryClient, QueryClientProvider } from "react-query";
-import { ucsbDatesFixtures } from "fixtures/ucsbDatesFixtures";
 
 const mockedNavigate = jest.fn();
 
