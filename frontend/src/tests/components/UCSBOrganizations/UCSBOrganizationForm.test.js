@@ -5,6 +5,7 @@ import UCSBOrganizationForm from "main/components/UCSBOrganizations/UCSBOrganiza
 import { ucsbOrganizationFixtures } from "fixtures/ucsbOrganizationFixtures";
 
 import { QueryClient, QueryClientProvider } from "react-query";
+import { extractComponentSectionArray } from "storybook/internal/docs-tools";
 
 const mockedNavigate = jest.fn();
 
@@ -40,6 +41,7 @@ describe("UCSBOrganizationForm tests", () => {
     );
 
     expect(await screen.findByText(/Create/)).toBeInTheDocument();
+    expect(await screen.findByTestId(`${testId}-submit`)).toBeInTheDocument();
 
     expectedHeaders.forEach((headerText) => {
       const header = screen.getByText(headerText);
@@ -59,12 +61,15 @@ describe("UCSBOrganizationForm tests", () => {
         <Router>
           <UCSBOrganizationForm
             initialContents={ucsbOrganizationFixtures.oneOrganization}
+            buttonLabel="Update"
           />
         </Router>
       </QueryClientProvider>,
     );
 
-    expect(await screen.findByText(/Create/)).toBeInTheDocument();
+    expect(await screen.findByText(/Update/)).toBeInTheDocument();
+    expect(await screen.findByTestId(`${testId}-submit`)).toBeInTheDocument();
+
     expectedHeaders.forEach((headerText) => {
       const header = screen.getByText(headerText);
       expect(header).toBeInTheDocument();
