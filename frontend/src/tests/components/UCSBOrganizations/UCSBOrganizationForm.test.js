@@ -22,6 +22,12 @@ describe("UCSBOrganizationForm tests", () => {
     "Organization Translation",
     "Inactive",
   ];
+  const expectedIds = [
+    "orgCode",
+    "orgTranslationShort",
+    "orgTranslation",
+    "inactive",
+  ];
   const testId = "UCSBOrganizationForm";
 
   test("renders correctly with no initialContents", async () => {
@@ -39,6 +45,12 @@ describe("UCSBOrganizationForm tests", () => {
       const header = screen.getByText(headerText);
       expect(header).toBeInTheDocument();
     });
+
+    await screen.findByTestId(`${testId}-orgCode`);
+    expectedIds.forEach((idText) => {
+      const testid = screen.getByTestId(`${testId}-${idText}`);
+      expect(testid).toBeInTheDocument();
+    });
   });
 
   test("renders correctly when passing in initialContents", async () => {
@@ -53,10 +65,15 @@ describe("UCSBOrganizationForm tests", () => {
     );
 
     expect(await screen.findByText(/Create/)).toBeInTheDocument();
-
     expectedHeaders.forEach((headerText) => {
       const header = screen.getByText(headerText);
       expect(header).toBeInTheDocument();
+    });
+
+    await screen.findByTestId(`${testId}-orgCode`);
+    expectedIds.forEach((idText) => {
+      const testid = screen.getByTestId(`${testId}-${idText}`);
+      expect(testid).toBeInTheDocument();
     });
   });
 
