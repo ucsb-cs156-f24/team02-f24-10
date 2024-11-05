@@ -37,121 +37,122 @@ import java.time.LocalDateTime;
 @Slf4j
 public class ArticlesController extends ApiController {
 
-	@Autowired
-	ArticlesRepository articlesRepository;
+  @Autowired
+  ArticlesRepository articlesRepository;
 
-	/**
-	 * List all Articles
-	 * 
-	 * @return an iterable of Articles
-	 */
-	@Operation(summary = "List all articles")
-	@PreAuthorize("hasRole('ROLE_USER')")
-	@GetMapping("/all")
-	public Iterable<Articles> allArticles() {
-		Iterable<Articles> articles = articlesRepository.findAll();
-		return articles;
-	}
+  /**
+   * List all Articles
+   * 
+   * @return an iterable of Articles
+   */
+  @Operation(summary = "List all articles")
+  @PreAuthorize("hasRole('ROLE_USER')")
+  @GetMapping("/all")
+  public Iterable<Articles> allArticles() {
+    Iterable<Articles> articles = articlesRepository.findAll();
+    return articles;
+  }
 
-	/**
-	 * Get a single Article by id
-	 * 
-	 * @param id the id of the article
-	 * @return an Article
-	 */
-	@Operation(summary = "Get a single Article")
-	@PreAuthorize("hasRole('ROLE_USER')")
-	@GetMapping("")
-	public Articles getById(
-			@Parameter(name = "id") @RequestParam Long id) {
-		Articles article = articlesRepository.findById(id)
-				.orElseThrow(() -> new EntityNotFoundException(Articles.class, id));
+  /**
+   * Get a single Article by id
+   * 
+   * @param id the id of the article
+   * @return an Article
+   */
+  @Operation(summary = "Get a single Article")
+  @PreAuthorize("hasRole('ROLE_USER')")
+  @GetMapping("")
+  public Articles getById(
+      @Parameter(name = "id") @RequestParam Long id) {
+    Articles article = articlesRepository.findById(id)
+        .orElseThrow(() -> new EntityNotFoundException(Articles.class, id));
 
-		return article;
-	}
+    return article;
+  }
 
-	/**
-	 * Create a new article
-	 * 
-	 * @param title       the title of the article
-	 * @param url         the url of the article
-	 * @param explanation the explanation of the article
-	 * @param email       the email of the author
-	 * @param dateAdded   the date the article was added
-	 * 
-	 * @return the created article
-	 * 
-	 */
-	@Operation(summary = "Create a new article")
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	@PostMapping("/post")
-	public Articles postArticle(
-			@Parameter(name = "title") @RequestParam String title,
-			@Parameter(name = "url") @RequestParam String url,
-			@Parameter(name = "explanation") @RequestParam String explanation,
-			@Parameter(name = "email") @RequestParam String email,
-			@Parameter(name = "dateAdded", description = "date (in iso format, e.g. YYYY-mm-ddTHH:MM:SS; see https://en.wikipedia.org/wiki/ISO_8601)") @RequestParam("dateAdded") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateAdded)
-			throws JsonProcessingException {
+  /**
+   * Create a new article
+   * 
+   * @param title       the title of the article
+   * @param url         the url of the article
+   * @param explanation the explanation of the article
+   * @param email       the email of the author
+   * @param dateAdded   the date the article was added
+   * 
+   * @return the created article
+   * 
+   */
+  @Operation(summary = "Create a new article")
+  @PreAuthorize("hasRole('ROLE_ADMIN')")
+  @PostMapping("/post")
+  public Articles postArticle(
+      @Parameter(name = "title") @RequestParam String title,
+      @Parameter(name = "url") @RequestParam String url,
+      @Parameter(name = "explanation") @RequestParam String explanation,
+      @Parameter(name = "email") @RequestParam String email,
+      @Parameter(name = "dateAdded", description = "date (in iso format, e.g. YYYY-mm-ddTHH:MM:SS; see https://en.wikipedia.org/wiki/ISO_8601)") @RequestParam("dateAdded") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateAdded)
+      throws JsonProcessingException {
 
-		// For an explanation of @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-		// See: https://www.baeldung.com/spring-date-parameters
+    // For an explanation of @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    // See: https://www.baeldung.com/spring-date-parameters
 
-		log.info("dateAdded={}", dateAdded);
+    log.info("dateAdded={}", dateAdded);
 
-		Articles article = new Articles();
-		article.setTitle(title);
-		article.setUrl(url);
-		article.setExplanation(explanation);
-		article.setEmail(email);
-		article.setDateAdded(dateAdded);
+    Articles article = new Articles();
+    article.setTitle(title);
+    article.setUrl(url);
+    article.setExplanation(explanation);
+    article.setEmail(email);
+    article.setDateAdded(dateAdded);
 
-		Articles savedArticle = articlesRepository.save(article);
+    Articles savedArticle = articlesRepository.save(article);
 
-		return savedArticle;
-	}
+    return savedArticle;
+  }
 
-	/**
-	 * Update a single article
-	 * 
-	 * @param id       id of the article to update
-	 * @param incoming the new article
-	 * @return the updated article object
-	 */
-	@Operation(summary = "Update a single article")
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	@PutMapping("")
-	public Articles updateArticle(
-			@Parameter(name = "id") @RequestParam Long id,
-			@RequestBody @Valid Articles incoming) {
+  /**
+   * Update a single article
+   * 
+   * @param id       id of the article to update
+   * @param incoming the new article
+   * @return the updated article object
+   */
+  @Operation(summary = "Update a single article")
+  @PreAuthorize("hasRole('ROLE_ADMIN')")
+  @PutMapping("")
+  public Articles updateArticle(
+      @Parameter(name = "id") @RequestParam Long id,
+      @RequestBody @Valid Articles incoming) {
 
-		Articles article = articlesRepository.findById(id)
-				.orElseThrow(() -> new EntityNotFoundException(Articles.class, id));
+    Articles article = articlesRepository.findById(id)
+        .orElseThrow(() -> new EntityNotFoundException(Articles.class, id));
 
-		article.setTitle(incoming.getTitle());
-		article.setUrl(incoming.getUrl());
-		article.setExplanation(incoming.getExplanation());
-		article.setEmail(incoming.getEmail());
+    article.setTitle(incoming.getTitle());
+    article.setUrl(incoming.getUrl());
+    article.setExplanation(incoming.getExplanation());
+    article.setEmail(incoming.getEmail());
+    article.setDateAdded(incoming.getDateAdded());
 
-		articlesRepository.save(article);
+    articlesRepository.save(article);
 
-		return article;
-	}
+    return article;
+  }
 
-	/**
-	 * Delete a Article
-	 * 
-	 * @param id the id of the article to delete
-	 * @return a message indicating the article was deleted
-	 */
-	@Operation(summary = "Delete a Article")
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	@DeleteMapping("")
-	public Object deleteArticle(
-			@Parameter(name = "id") @RequestParam Long id) {
-		Articles ucsbDate = articlesRepository.findById(id)
-				.orElseThrow(() -> new EntityNotFoundException(Articles.class, id));
+  /**
+   * Delete a Article
+   * 
+   * @param id the id of the article to delete
+   * @return a message indicating the article was deleted
+   */
+  @Operation(summary = "Delete a Article")
+  @PreAuthorize("hasRole('ROLE_ADMIN')")
+  @DeleteMapping("")
+  public Object deleteArticle(
+      @Parameter(name = "id") @RequestParam Long id) {
+    Articles ucsbDate = articlesRepository.findById(id)
+        .orElseThrow(() -> new EntityNotFoundException(Articles.class, id));
 
-		articlesRepository.delete(ucsbDate);
-		return genericMessage("Article with id %s deleted".formatted(id));
-	}
+    articlesRepository.delete(ucsbDate);
+    return genericMessage("Article with id %s deleted".formatted(id));
+  }
 }
