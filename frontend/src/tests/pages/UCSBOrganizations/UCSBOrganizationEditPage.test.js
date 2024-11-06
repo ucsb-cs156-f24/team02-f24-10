@@ -28,6 +28,7 @@ jest.mock("react-router-dom", () => {
     ...originalModule,
     useParams: () => ({
       orgCode: "SKY",
+      id: "SKY"
     }),
     Navigate: (x) => {
       mockNavigate(x);
@@ -82,7 +83,12 @@ describe("UCSBOrganizationEditPage tests", () => {
         .onGet("/api/systemInfo")
         .reply(200, systemInfoFixtures.showingNeither);
       axiosMock.onGet("/api/ucsborganizations", { params: { orgCode: "SKY" } }).reply(200, ucsbOrganizationFixtures.oneOrganization );
-      axiosMock.onPut("/api/ucsborganizations").reply(200, ucsbOrganizationFixtures.oneOrganization);
+      axiosMock.onPut("/api/ucsborganizations").reply(200, {
+        orgCode: "SKY",
+        orgTranslationShort: "Sky-diving club",
+        orgTranslation: "UCSB Sky-diving club",
+        inactive: "true",
+      });
     });
 
     const queryClient = new QueryClient();
@@ -150,6 +156,7 @@ describe("UCSBOrganizationEditPage tests", () => {
       fireEvent.change(inactiveField, {
         target: { value: "true" },
       });
+
       fireEvent.click(submitButton);
 
       await waitFor(() => expect(mockToast).toHaveBeenCalled());
@@ -160,12 +167,13 @@ describe("UCSBOrganizationEditPage tests", () => {
       expect(mockNavigate).toHaveBeenCalledWith({ to: "/ucsborganizations" });
 
       expect(axiosMock.history.put.length).toBe(1); // times called
-      expect(axiosMock.history.put[0].params).toEqual({ id: "SKY" });
+      expect(axiosMock.history.put[0].params).toEqual({ orgCode: "SKY" });
       expect(axiosMock.history.put[0].data).toBe(
         JSON.stringify({
+          orgCode: "SKY",
           orgTranslationShort: "Sky-diving club",
           orgTranslation: "UCSB Sky-diving club",
-          inactive: false
+          inactive: "true"
         }),
       ); // posted object
     });
