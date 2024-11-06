@@ -36,7 +36,7 @@ export default function MenuItemReviewTable({ dates, currentUser }) {
       accessor: "id", // accessor is the "key" in the data
     },
     {
-      Header: "itemId",
+      Header: "ItemId",
       accessor: "itemId",
     },
     {

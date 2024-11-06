@@ -31,7 +31,7 @@ describe("UserTable tests", () => {
       </QueryClientProvider>,
     );
 
-    const expectedHeaders = ["id", "itemId", "Email", "Stars", "DateReviewed", "Comment"];
+    const expectedHeaders = ["id", "ItemId", "Email", "Stars", "DateReviewed", "Comment"];
     const expectedFields = ["id", "itemId", "reviewerEmail", "stars", "dateReviewed", "comments"];
     const testId = "MenuItemReviewTable";
 
@@ -77,7 +77,7 @@ describe("UserTable tests", () => {
       </QueryClientProvider>,
     );
 
-    const expectedHeaders = ["id", "itemId", "Email", "Stars", "DateReviewed", "Comment"];
+    const expectedHeaders = ["id", "ItemId", "Email", "Stars", "DateReviewed", "Comment"];
     const expectedFields = ["id", "itemId", "reviewerEmail", "stars", "dateReviewed", "comments"];
     const testId = "MenuItemReviewTable";
 
