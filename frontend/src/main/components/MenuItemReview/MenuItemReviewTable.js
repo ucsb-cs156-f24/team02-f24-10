@@ -44,16 +44,16 @@ export default function MenuItemReviewTable({ dates, currentUser }) {
       accessor: "reviewerEmail",
     },
     {
-        Header: "Stars",
-        accessor: "stars",
+      Header: "Stars",
+      accessor: "stars",
     },
     {
       Header: "DateReviewed",
       accessor: "dateReviewed",
     },
     {
-        Header: "Comment",
-        accessor: "comments",
+      Header: "Comment",
+      accessor: "comments",
     },
   ];
 
@@ -66,5 +66,7 @@ export default function MenuItemReviewTable({ dates, currentUser }) {
     );
   }
 
-  return <OurTable data={dates} columns={columns} testid={"MenuItemReviewTable"} />;
+  return (
+    <OurTable data={dates} columns={columns} testid={"MenuItemReviewTable"} />
+  );
 }
