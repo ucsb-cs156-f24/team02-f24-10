@@ -59,6 +59,11 @@ export default function UCSBOrganizationTable({
     );
   }
 
+  
+  organizations.forEach((org) => {
+      org.inactive = String(org.inactive)
+  });
+
   return (
     <OurTable data={organizations} columns={columns} testid={testIdPrefix} />
   );
