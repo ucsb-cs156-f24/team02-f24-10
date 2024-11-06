@@ -25,7 +25,6 @@ function MenuItemReviewForm({
     /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/i;
   // Stryker restore Regex
 
-
   return (
     <Form onSubmit={handleSubmit(submitAction)}>
       <Row>
@@ -110,7 +109,7 @@ function MenuItemReviewForm({
               isInvalid={Boolean(errors.stars)}
               {...register("stars", {
                 required: "stars is required.",
-                max: 5
+                max: 5,
               })}
             />
             <Form.Control.Feedback type="invalid">

@@ -24,16 +24,24 @@ describe("MenuItemReview tests", () => {
   test("renders correctly when passing in a MenuItemReview", async () => {
     render(
       <Router>
-        <MenuItemReviewForm initialContents={menuItemReviewFixtures.oneReview} />
+        <MenuItemReviewForm
+          initialContents={menuItemReviewFixtures.oneReview}
+        />
       </Router>,
     );
     await screen.findByTestId(/MenuItemReviewForm-id/);
     expect(screen.getByTestId(/Id/)).toBeInTheDocument();
     expect(screen.getByTestId(/MenuItemReviewForm-itemId/)).toBeInTheDocument();
-    expect(screen.getByTestId(/MenuItemReviewForm-dateReviewed/)).toBeInTheDocument();
-    expect(screen.getByTestId(/MenuItemReviewForm-reviewerEmail/)).toBeInTheDocument();
+    expect(
+      screen.getByTestId(/MenuItemReviewForm-dateReviewed/),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByTestId(/MenuItemReviewForm-reviewerEmail/),
+    ).toBeInTheDocument();
     expect(screen.getByTestId(/MenuItemReviewForm-stars/)).toBeInTheDocument();
-    expect(screen.getByTestId(/MenuItemReviewForm-comments/)).toBeInTheDocument();
+    expect(
+      screen.getByTestId(/MenuItemReviewForm-comments/),
+    ).toBeInTheDocument();
     expect(screen.getByTestId(/MenuItemReviewForm-id/)).toHaveValue("1");
   });
 
@@ -44,13 +52,16 @@ describe("MenuItemReview tests", () => {
       </Router>,
     );
     await screen.findByTestId("MenuItemReviewForm-dateReviewed");
-    const dateReviewedField = screen.getByTestId("MenuItemReviewForm-dateReviewed");
+    const dateReviewedField = screen.getByTestId(
+      "MenuItemReviewForm-dateReviewed",
+    );
     const itemIdField = screen.getByTestId(/MenuItemReviewForm-itemId/);
-    const reviewerEmailField = screen.getByTestId(/MenuItemReviewForm-reviewerEmail/);
+    const reviewerEmailField = screen.getByTestId(
+      /MenuItemReviewForm-reviewerEmail/,
+    );
     const starsField = screen.getByTestId(/MenuItemReviewForm-stars/);
     const commentsField = screen.getByTestId(/MenuItemReviewForm-comments/);
     const submitButton = screen.getByTestId("MenuItemReviewForm-submit");
-
 
     fireEvent.change(dateReviewedField, { target: { value: "bad-input" } });
     fireEvent.change(itemIdField, { target: { value: "bad-input" } });
@@ -65,7 +76,7 @@ describe("MenuItemReview tests", () => {
   test("Correct Error messsages on missing input", async () => {
     render(
       <Router>
-        <MenuItemReviewForm/>
+        <MenuItemReviewForm />
       </Router>,
     );
     await screen.findByTestId("MenuItemReviewForm-submit");
@@ -91,15 +102,21 @@ describe("MenuItemReview tests", () => {
     );
     await screen.findByTestId("MenuItemReviewForm-dateReviewed");
 
-    const dateReviewedField = screen.getByTestId("MenuItemReviewForm-dateReviewed");
+    const dateReviewedField = screen.getByTestId(
+      "MenuItemReviewForm-dateReviewed",
+    );
     const itemIdField = screen.getByTestId(/MenuItemReviewForm-itemId/);
-    const reviewerEmailField = screen.getByTestId(/MenuItemReviewForm-reviewerEmail/);
+    const reviewerEmailField = screen.getByTestId(
+      /MenuItemReviewForm-reviewerEmail/,
+    );
     const starsField = screen.getByTestId(/MenuItemReviewForm-stars/);
     const commentsField = screen.getByTestId(/MenuItemReviewForm-comments/);
     const submitButton = screen.getByTestId("MenuItemReviewForm-submit");
 
     fireEvent.change(itemIdField, { target: { value: 1 } });
-    fireEvent.change(reviewerEmailField, { target: { value: "gaucho@ucsb.edu" } });
+    fireEvent.change(reviewerEmailField, {
+      target: { value: "gaucho@ucsb.edu" },
+    });
     fireEvent.change(starsField, { target: { value: 1 } });
     fireEvent.change(commentsField, { target: { value: "okay" } });
     fireEvent.change(dateReviewedField, {
