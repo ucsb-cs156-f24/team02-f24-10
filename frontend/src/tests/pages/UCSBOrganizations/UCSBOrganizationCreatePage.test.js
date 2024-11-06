@@ -104,7 +104,6 @@ describe("UCSBOrganizationCreatePage tests", () => {
     const createButton = screen.getByText("Create");
     expect(createButton).toBeInTheDocument();
 
-
     fireEvent.change(orgCodeInput, { target: { value: organization.orgCode } });
     fireEvent.change(orgTranslationShortInput, {
       target: { value: organization.orgTranslationShort },
