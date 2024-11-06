@@ -1,11 +1,8 @@
 package edu.ucsb.cs156.example.controllers;
 
-import edu.ucsb.cs156.example.entities.Articles;
 import edu.ucsb.cs156.example.entities.RecommendationRequest;
-import edu.ucsb.cs156.example.entities.UCSBDate;
 import edu.ucsb.cs156.example.errors.EntityNotFoundException;
 import edu.ucsb.cs156.example.repositories.RecommendationRequestRepository;
-import edu.ucsb.cs156.example.repositories.UCSBDateRepository;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -16,7 +13,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.security.access.method.P;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
