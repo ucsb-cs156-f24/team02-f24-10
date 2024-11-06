@@ -59,9 +59,8 @@ export default function UCSBOrganizationTable({
     );
   }
 
-  
   organizations.forEach((org) => {
-      org.inactive = String(org.inactive)
+    org.inactive = String(org.inactive);
   });
 
   return (
