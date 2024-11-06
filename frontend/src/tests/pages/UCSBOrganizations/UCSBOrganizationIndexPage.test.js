@@ -88,14 +88,16 @@ describe("UCSBOrganizationIndexPage tests", () => {
         screen.getByTestId(`${testId}-cell-row-0-col-orgCode`),
       ).toHaveTextContent("SNU");
     });
-    expect(screen.getByTestId(`${testId}-cell-row-1-col-orgCode`)).toHaveTextContent(
-      "GDC",
-    );
-    expect(screen.getByTestId(`${testId}-cell-row-2-col-orgCode`)).toHaveTextContent(
-      "ACM",
-    );
+    expect(
+      screen.getByTestId(`${testId}-cell-row-1-col-orgCode`),
+    ).toHaveTextContent("GDC");
+    expect(
+      screen.getByTestId(`${testId}-cell-row-2-col-orgCode`),
+    ).toHaveTextContent("ACM");
 
-    const createOrganizationButton = screen.queryByText("Create UCSB Organization");
+    const createOrganizationButton = screen.queryByText(
+      "Create UCSB Organization",
+    );
     expect(createOrganizationButton).not.toBeInTheDocument();
 
     const orgTransShort = screen.getByText("SIGMA NU");
@@ -106,7 +108,9 @@ describe("UCSBOrganizationIndexPage tests", () => {
 
     // for non-admin users, details button is visible, but the edit and delete buttons should not be visible
     expect(
-      screen.queryByTestId("UCSBOrganizationTable-cell-row-0-col-Delete-button"),
+      screen.queryByTestId(
+        "UCSBOrganizationTable-cell-row-0-col-Delete-button",
+      ),
     ).not.toBeInTheDocument();
     expect(
       screen.queryByTestId("UCSBOrganizationTable-cell-row-0-col-Edit-button"),
@@ -163,9 +167,9 @@ describe("UCSBOrganizationIndexPage tests", () => {
       ).toBeInTheDocument();
     });
 
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-orgCode`)).toHaveTextContent(
-      "SNU",
-    );
+    expect(
+      screen.getByTestId(`${testId}-cell-row-0-col-orgCode`),
+    ).toHaveTextContent("SNU");
 
     const deleteButton = screen.getByTestId(
       `${testId}-cell-row-0-col-Delete-button`,
@@ -175,7 +179,9 @@ describe("UCSBOrganizationIndexPage tests", () => {
     fireEvent.click(deleteButton);
 
     await waitFor(() => {
-      expect(mockToast).toHaveBeenCalledWith("UCSBOrganization with id SNU deleted");
+      expect(mockToast).toHaveBeenCalledWith(
+        "UCSBOrganization with id SNU deleted",
+      );
     });
 
     await waitFor(() => {
