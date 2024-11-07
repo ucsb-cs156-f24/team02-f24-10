@@ -28,7 +28,7 @@ jest.mock("react-router-dom", () => {
     ...originalModule,
     useParams: () => ({
       orgCode: "SKY",
-      id: "SKY"
+      id: "SKY",
     }),
     Navigate: (x) => {
       mockNavigate(x);
@@ -50,7 +50,9 @@ describe("UCSBOrganizationEditPage tests", () => {
       axiosMock
         .onGet("/api/systemInfo")
         .reply(200, systemInfoFixtures.showingNeither);
-      axiosMock.onGet("/api/ucsborganizations", { params: { orgCode: "SKY" } }).timeout();
+      axiosMock
+        .onGet("/api/ucsborganizations", { params: { orgCode: "SKY" } })
+        .timeout();
     });
 
     const queryClient = new QueryClient();
@@ -65,7 +67,9 @@ describe("UCSBOrganizationEditPage tests", () => {
         </QueryClientProvider>,
       );
       await screen.findByText("Edit UCSB Organization");
-      expect(screen.queryByTestId("UCSBOrganizationForm-orgCode")).not.toBeInTheDocument();
+      expect(
+        screen.queryByTestId("UCSBOrganizationForm-orgCode"),
+      ).not.toBeInTheDocument();
       restoreConsole();
     });
   });
@@ -82,7 +86,9 @@ describe("UCSBOrganizationEditPage tests", () => {
       axiosMock
         .onGet("/api/systemInfo")
         .reply(200, systemInfoFixtures.showingNeither);
-      axiosMock.onGet("/api/ucsborganizations", { params: { orgCode: "SKY" } }).reply(200, ucsbOrganizationFixtures.oneOrganization );
+      axiosMock
+        .onGet("/api/ucsborganizations", { params: { orgCode: "SKY" } })
+        .reply(200, ucsbOrganizationFixtures.oneOrganization);
       axiosMock.onPut("/api/ucsborganizations").reply(200, {
         orgCode: "SKY",
         orgTranslationShort: "Sky-diving club",
@@ -105,8 +111,12 @@ describe("UCSBOrganizationEditPage tests", () => {
       await screen.findByTestId("UCSBOrganizationForm-orgCode");
 
       const orgCodeField = screen.getByTestId("UCSBOrganizationForm-orgCode");
-      const orgTranslationShortField = screen.getByTestId("UCSBOrganizationForm-orgTranslationShort");
-      const orgTranslationField = screen.getByTestId("UCSBOrganizationForm-orgTranslation");
+      const orgTranslationShortField = screen.getByTestId(
+        "UCSBOrganizationForm-orgTranslationShort",
+      );
+      const orgTranslationField = screen.getByTestId(
+        "UCSBOrganizationForm-orgTranslation",
+      );
       const inactiveField = screen.getByTestId("UCSBOrganizationForm-inactive");
 
       const submitButton = screen.getByTestId("UCSBOrganizationForm-submit");
@@ -135,8 +145,12 @@ describe("UCSBOrganizationEditPage tests", () => {
       await screen.findByTestId("UCSBOrganizationForm-orgCode");
 
       const orgCodeField = screen.getByTestId("UCSBOrganizationForm-orgCode");
-      const orgTranslationShortField = screen.getByTestId("UCSBOrganizationForm-orgTranslationShort");
-      const orgTranslationField = screen.getByTestId("UCSBOrganizationForm-orgTranslation");
+      const orgTranslationShortField = screen.getByTestId(
+        "UCSBOrganizationForm-orgTranslationShort",
+      );
+      const orgTranslationField = screen.getByTestId(
+        "UCSBOrganizationForm-orgTranslation",
+      );
       const inactiveField = screen.getByTestId("UCSBOrganizationForm-inactive");
 
       const submitButton = screen.getByTestId("UCSBOrganizationForm-submit");
@@ -173,7 +187,7 @@ describe("UCSBOrganizationEditPage tests", () => {
           orgCode: "SKY",
           orgTranslationShort: "Sky-diving club",
           orgTranslation: "UCSB Sky-diving club",
-          inactive: "true"
+          inactive: "true",
         }),
       ); // posted object
     });
