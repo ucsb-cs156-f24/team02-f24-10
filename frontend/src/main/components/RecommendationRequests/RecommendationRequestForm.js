@@ -115,8 +115,7 @@ function RecommendationRequestForm({
           id="dateNeeded"
           type="datetime-local"
           isInvalid={Boolean(errors.dateNeeded)}
-          {...register("dateNeeded", {
-          })}
+          {...register("dateNeeded", {})}
         />
         <Form.Control.Feedback type="invalid">
           {errors.dateRequested && "Date Needed is required. "}
@@ -145,9 +144,7 @@ function RecommendationRequestForm({
         </Form.Control.Feedback>
       </Form.Group>
 
-      <Button type="submit">
-        {buttonLabel}
-      </Button>
+      <Button type="submit">{buttonLabel}</Button>
       <Button
         variant="Secondary"
         onClick={() => navigate(-1)}
