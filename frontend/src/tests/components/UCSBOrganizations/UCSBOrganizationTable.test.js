@@ -91,6 +91,12 @@ describe("UCSBOrganizationTable tests", () => {
     expect(
       screen.getByTestId(`${testId}-cell-row-0-col-orgTranslationShort`),
     ).toHaveTextContent("SIGMA NU");
+    expect(
+      screen.getByTestId(`${testId}-cell-row-0-col-orgTranslation`),
+    ).toHaveTextContent("SIGMA NU Fraternity");
+    expect(
+      screen.getByTestId(`${testId}-cell-row-0-col-inactive`),
+    ).toHaveTextContent("true");
 
     expect(
       screen.getByTestId(`${testId}-cell-row-1-col-orgCode`),
@@ -98,6 +104,25 @@ describe("UCSBOrganizationTable tests", () => {
     expect(
       screen.getByTestId(`${testId}-cell-row-1-col-orgTranslationShort`),
     ).toHaveTextContent("UCSB GDC");
+    expect(
+      screen.getByTestId(`${testId}-cell-row-1-col-orgTranslation`),
+    ).toHaveTextContent("UCSB Game Development Club");
+    expect(
+      screen.getByTestId(`${testId}-cell-row-1-col-inactive`),
+    ).toHaveTextContent("false");
+
+    expect(
+      screen.getByTestId(`${testId}-cell-row-2-col-orgCode`),
+    ).toHaveTextContent("ACM");
+    expect(
+      screen.getByTestId(`${testId}-cell-row-2-col-orgTranslationShort`),
+    ).toHaveTextContent("Assoc for Comp Mach");
+    expect(
+      screen.getByTestId(`${testId}-cell-row-2-col-orgTranslation`),
+    ).toHaveTextContent("Association for Computing Machinery");
+    expect(
+      screen.getByTestId(`${testId}-cell-row-2-col-inactive`),
+    ).toHaveTextContent("false");
 
     const editButton = screen.getByTestId(
       `${testId}-cell-row-0-col-Edit-button`,
