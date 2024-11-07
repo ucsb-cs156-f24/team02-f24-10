@@ -46,7 +46,6 @@ function RecommendationRequestForm({
       <Form.Group className="mb-3">
         <Form.Label htmlFor="requesterEmail">Requester Email</Form.Label>
         <Form.Control
-          data-testid={testIdPrefix + "-requesterEmail"}
           id="requesterEmail"
           type="text"
           isInvalid={Boolean(errors.requesterEmail)}
@@ -62,7 +61,6 @@ function RecommendationRequestForm({
       <Form.Group className="mb-3">
         <Form.Label htmlFor="professorEmail">Professor Email</Form.Label>
         <Form.Control
-          data-testid={testIdPrefix + "-professorEmail"}
           id="professorEmail"
           type="text"
           isInvalid={Boolean(errors.professorEmail)}
@@ -98,7 +96,6 @@ function RecommendationRequestForm({
       <Form.Group className="mb-3">
         <Form.Label htmlFor="dateRequested">Date Requested (in UTC)</Form.Label>
         <Form.Control
-          data-testid={testIdPrefix + "-dateRequested"}
           id="dateRequested"
           type="datetime-local"
           isInvalid={Boolean(errors.dateRequested)}
@@ -115,13 +112,10 @@ function RecommendationRequestForm({
       <Form.Group className="mb-3">
         <Form.Label htmlFor="dateNeeded">Date Needed (in UTC)</Form.Label>
         <Form.Control
-          data-testid={testIdPrefix + "-dateNeeded"}
           id="dateNeeded"
           type="datetime-local"
           isInvalid={Boolean(errors.dateNeeded)}
           {...register("dateNeeded", {
-            required: true,
-            pattern: isodate_regex,
           })}
         />
         <Form.Control.Feedback type="invalid">
@@ -132,7 +126,6 @@ function RecommendationRequestForm({
       <Form.Group className="mb-3">
         <Form.Label htmlFor="done">Done</Form.Label>
         <Form.Select
-          data-testid={testIdPrefix + "-done"}
           id="done"
           type="text"
           isInvalid={Boolean(errors.done)}
@@ -152,7 +145,7 @@ function RecommendationRequestForm({
         </Form.Control.Feedback>
       </Form.Group>
 
-      <Button type="submit" data-testid={testIdPrefix + "-submit"}>
+      <Button type="submit">
         {buttonLabel}
       </Button>
       <Button
