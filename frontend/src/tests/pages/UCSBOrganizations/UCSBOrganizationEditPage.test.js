@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import UCSBOrganizationIndexPage from "main/pages/UCSBOrganization/UCSBOrganizationIndexPage";
+import UCSBOrganizationEditPage from "main/pages/UCSBOrganizations/UCSBOrganizationEditPage";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
 
@@ -8,7 +8,7 @@ import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
 import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
 
-describe("UCSBOrganizationIndexPage tests", () => {
+describe("UCSBOrganizationEditPage tests", () => {
   const axiosMock = new AxiosMockAdapter(axios);
 
   const setupUserOnly = () => {
@@ -29,22 +29,15 @@ describe("UCSBOrganizationIndexPage tests", () => {
     setupUserOnly();
 
     // act
-
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <UCSBOrganizationIndexPage />
+          <UCSBOrganizationEditPage />
         </MemoryRouter>
       </QueryClientProvider>,
     );
 
-    await screen.findByText("Index page not yet implemented");
-
     // assert
-    expect(
-      screen.getByText("Index page not yet implemented"),
-    ).toBeInTheDocument();
-    expect(screen.getByText("Create")).toBeInTheDocument();
-    expect(screen.getByText("Edit")).toBeInTheDocument();
+    await screen.findByText("Edit page not yet implemented");
   });
 });

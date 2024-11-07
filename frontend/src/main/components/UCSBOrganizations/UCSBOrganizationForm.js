@@ -42,6 +42,7 @@ function UCSBOrganizationForm({
             data-testid={testIdPrefix + "-orgCode"}
             id="orgCode"
             type="text"
+            isInvalid={Boolean(errors.orgCode)}
             {...register("orgCode", {
               required: "Organization Code is required.",
             })}
