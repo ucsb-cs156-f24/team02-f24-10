@@ -111,6 +111,48 @@ function App() {
           <>
             <Route
               exact
+              path="/menuitemreview"
+              element={<MenuItemReviewIndexPage />}
+            />
+          </>
+        )}
+        {hasRole(currentUser, "ROLE_ADMIN") && (
+          <>
+            <Route
+              exact
+              path="/menuitemreview/edit/:id"
+              element={<MenuItemReviewEditPage />}
+            />
+            <Route
+              exact
+              path="/menuitemreview/create"
+              element={<MenuItemReviewCreatePage />}
+            />
+          </>
+        )}
+        {hasRole(currentUser, "ROLE_USER") && (
+          <>
+            <Route exact path="/articles" element={<ArticlesIndexPage />} />
+          </>
+        )}
+        {hasRole(currentUser, "ROLE_ADMIN") && (
+          <>
+            <Route
+              exact
+              path="/articles/edit/:id"
+              element={<ArticlesEditPage />}
+            />
+            <Route
+              exact
+              path="/articles/create"
+              element={<ArticlesCreatePage />}
+            />
+          </>
+        )}
+        {hasRole(currentUser, "ROLE_USER") && (
+          <>
+            <Route
+              exact
               path="/placeholder"
               element={<PlaceholderIndexPage />}
             />
@@ -127,43 +169,6 @@ function App() {
               exact
               path="/placeholder/create"
               element={<PlaceholderCreatePage />}
-            />
-          </>
-        )}
-        {hasRole(currentUser, "ROLE_USER") && (
-          <>
-<<<<<<< HEAD
-            <Route
-              exact
-              path="/menuitemreview"
-              element={<MenuItemReviewIndexPage />}
-            />
-=======
-            <Route exact path="/articles" element={<ArticlesIndexPage />} />
->>>>>>> 2e624f811704c4141e7418b21ccafd7b3e4a4e47
-          </>
-        )}
-        {hasRole(currentUser, "ROLE_ADMIN") && (
-          <>
-            <Route
-              exact
-<<<<<<< HEAD
-              path="/menuitemreview/edit/:id"
-              element={<MenuItemReviewEditPage />}
-            />
-            <Route
-              exact
-              path="/menuitemreview/create"
-              element={<MenuItemReviewCreatePage />}
-=======
-              path="/articles/edit/:id"
-              element={<ArticlesEditPage />}
-            />
-            <Route
-              exact
-              path="/articles/create"
-              element={<ArticlesCreatePage />}
->>>>>>> 2e624f811704c4141e7418b21ccafd7b3e4a4e47
             />
           </>
         )}
