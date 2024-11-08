@@ -23,9 +23,9 @@ import PlaceholderIndexPage from "main/pages/Placeholder/PlaceholderIndexPage";
 import PlaceholderCreatePage from "main/pages/Placeholder/PlaceholderCreatePage";
 import PlaceholderEditPage from "main/pages/Placeholder/PlaceholderEditPage";
 
-import MenuItemReviewIndexPage from "main/pages/MenuItemReview/MenuItemReviewIndexPage";
-import MenuItemReviewCreatePage from "main/pages/MenuItemReview/MenuItemReviewCreatePage";
-import MenuItemReviewEditPage from "main/pages/MenuItemReview/MenuItemReviewEditPage";
+import RecommendationRequestIndexPage from "main/pages/RecommendationRequest/RecommendationRequestIndexPage";
+import RecommendationRequestCreatePage from "main/pages/RecommendationRequest/RecommendationRequestCreatePage";
+import RecommendationRequestEditPage from "main/pages/RecommendationRequest/RecommendationRequestEditPage";
 
 import { hasRole, useCurrentUser } from "main/utils/currentUser";
 
@@ -115,8 +115,8 @@ function App() {
           <>
             <Route
               exact
-              path="/menuitemreview"
-              element={<MenuItemReviewIndexPage />}
+              path="/placeholder"
+              element={<PlaceholderIndexPage />}
             />
           </>
         )}
@@ -124,13 +124,13 @@ function App() {
           <>
             <Route
               exact
-              path="/menuitemreview/edit/:id"
-              element={<MenuItemReviewEditPage />}
+              path="/placeholder/edit/:id"
+              element={<PlaceholderEditPage />}
             />
             <Route
               exact
-              path="/menuitemreview/create"
-              element={<MenuItemReviewCreatePage />}
+              path="/placeholder/create"
+              element={<PlaceholderCreatePage />}
             />
           </>
         )}
@@ -156,6 +156,10 @@ function App() {
               path="/ucsbdiningcommonsmenuitem/create"
               element={<UCSBDiningCommonsMenuItemCreatePage />}
             />
+          </>
+        )}
+        {hasRole(currentUser, "ROLE_ADMIN") && (
+          <>
             <Route
               exact
               path="/articles/edit/:id"
@@ -172,8 +176,8 @@ function App() {
           <>
             <Route
               exact
-              path="/placeholder"
-              element={<PlaceholderIndexPage />}
+              path="/recommendationrequest"
+              element={<RecommendationRequestIndexPage />}
             />
           </>
         )}
@@ -181,13 +185,13 @@ function App() {
           <>
             <Route
               exact
-              path="/placeholder/edit/:id"
-              element={<PlaceholderEditPage />}
+              path="/recommendationrequest/edit/:id"
+              element={<RecommendationRequestEditPage />}
             />
             <Route
               exact
-              path="/placeholder/create"
-              element={<PlaceholderCreatePage />}
+              path="/recommendationrequest/create"
+              element={<RecommendationRequestCreatePage />}
             />
           </>
         )}
