@@ -54,6 +54,7 @@ function MenuItemReviewForm({
               isInvalid={Boolean(errors.itemId)}
               {...register("itemId", {
                 required: "itemId is required",
+                min: 0,
               })}
             />
             <Form.Control.Feedback type="invalid">
