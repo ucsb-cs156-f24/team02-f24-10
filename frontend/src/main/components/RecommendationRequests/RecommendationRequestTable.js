@@ -74,10 +74,14 @@ export default function RecommendationRequestTable({
   }
 
   recommendationRequests.forEach((recommendationRequest) => {
-    recommendationRequest.done = String(recommendationRequest.done);  
+    recommendationRequest.done = String(recommendationRequest.done);
   });
 
   return (
-    <OurTable data={recommendationRequests} columns={columns} testid={testIdPrefix} />
+    <OurTable
+      data={recommendationRequests}
+      columns={columns}
+      testid={testIdPrefix}
+    />
   );
 }
