@@ -27,11 +27,6 @@ import RecommendationRequestIndexPage from "main/pages/RecommendationRequest/Rec
 import RecommendationRequestCreatePage from "main/pages/RecommendationRequest/RecommendationRequestCreatePage";
 import RecommendationRequestEditPage from "main/pages/RecommendationRequest/RecommendationRequestEditPage";
 
-import MenuItemReviewIndexPage from "main/pages/MenuItemReview/MenuItemReviewIndexPage";
-import MenuItemReviewCreatePage from "main/pages/MenuItemReview/MenuItemReviewCreatePage";
-import MenuItemReviewEditPage from "main/pages/MenuItemReview/MenuItemReviewEditPage";
-
-
 import { hasRole, useCurrentUser } from "main/utils/currentUser";
 
 import "bootstrap/dist/css/bootstrap.css";
@@ -120,8 +115,8 @@ function App() {
           <>
             <Route
               exact
-              path="/menuitemreview"
-              element={<MenuItemReviewIndexPage />}
+              path="/placeholder"
+              element={<PlaceholderIndexPage />}
             />
           </>
         )}
@@ -129,13 +124,13 @@ function App() {
           <>
             <Route
               exact
-              path="/menuitemreview/edit/:id"
-              element={<MenuItemReviewEditPage />}
+              path="/placeholder/edit/:id"
+              element={<PlaceholderEditPage />}
             />
             <Route
               exact
-              path="/menuitemreview/create"
-              element={<MenuItemReviewCreatePage />}
+              path="/placeholder/create"
+              element={<PlaceholderCreatePage />}
             />
           </>
         )}
@@ -183,9 +178,6 @@ function App() {
               exact
               path="/recommendationrequest"
               element={<RecommendationRequestIndexPage />}
-
-              path="/placeholder"
-              element={<PlaceholderIndexPage />}
             />
           </>
         )}
@@ -200,14 +192,6 @@ function App() {
               exact
               path="/recommendationrequest/create"
               element={<RecommendationRequestCreatePage />}
-
-              path="/placeholder/edit/:id"
-              element={<PlaceholderEditPage />}
-            />
-            <Route
-              exact
-              path="/placeholder/create"
-              element={<PlaceholderCreatePage />}
             />
           </>
         )}
