@@ -161,6 +161,10 @@ function App() {
               path="/ucsbdiningcommonsmenuitem/create"
               element={<UCSBDiningCommonsMenuItemCreatePage />}
             />
+          </>
+        )}
+        {hasRole(currentUser, "ROLE_ADMIN") && (
+          <>
             <Route
               exact
               path="/articles/edit/:id"
