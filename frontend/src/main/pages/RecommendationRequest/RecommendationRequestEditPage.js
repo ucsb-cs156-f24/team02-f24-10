@@ -42,7 +42,9 @@ export default function RecommendationRequestEditPage({ storybook = false }) {
   });
 
   const onSuccess = (recommendationRequest) => {
-    toast(`Recommendation Request Updated - id: ${recommendationRequest.id} Requester email: ${recommendationRequest.requesterEmail} Professor email: ${recommendationRequest.professorEmail}`);
+    toast(
+      `Recommendation Request Updated - id: ${recommendationRequest.id} Requester email: ${recommendationRequest.requesterEmail} Professor email: ${recommendationRequest.professorEmail}`,
+    );
   };
 
   const mutation = useBackendMutation(
@@ -59,7 +61,7 @@ export default function RecommendationRequestEditPage({ storybook = false }) {
   };
 
   if (isSuccess && !storybook) {
-    return <Navigate to="/recommendationrequests" />;
+    return <Navigate to="/recommendationrequest" />;
   }
 
   return (
