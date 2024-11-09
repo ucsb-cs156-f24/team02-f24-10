@@ -105,7 +105,7 @@ function RecommendationRequestForm({
           })}
         />
         <Form.Control.Feedback type="invalid">
-          {errors.dateRequested && "Date Requested is required. "}
+          {errors.dateRequested && "Date Requested is required."}
         </Form.Control.Feedback>
       </Form.Group>
 
@@ -121,7 +121,7 @@ function RecommendationRequestForm({
           })}
         />
         <Form.Control.Feedback type="invalid">
-          {errors.dateRequested && "Date Needed is required. "}
+          {errors.dateNeeded && "Date Needed is required. "}
         </Form.Control.Feedback>
       </Form.Group>
 

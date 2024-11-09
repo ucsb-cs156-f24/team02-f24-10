@@ -96,12 +96,12 @@ describe("RecommendationRequestForm tests", () => {
     const submitButton = screen.getByText(/Create/);
     fireEvent.click(submitButton);
 
-    await screen.findByText(/Requester Email is required/);
-    expect(screen.getByText(/Professor Email is required/)).toBeInTheDocument();
-    expect(screen.getByText(/Explanation is required/)).toBeInTheDocument();
-    expect(screen.getByText(/Date Requested is required/)).toBeInTheDocument();
-    expect(screen.getByText(/Date Needed is required/)).toBeInTheDocument();
-    expect(screen.getByText(/'Done' field is required/)).toBeInTheDocument();
+    await screen.findByText(/Requester Email is required./);
+    expect(screen.getByText(/Professor Email is required./)).toBeInTheDocument();
+    expect(screen.getByText(/Explanation is required./)).toBeInTheDocument();
+    expect(screen.getByText(/Date Requested is required./)).toBeInTheDocument();
+    expect(screen.getByText(/Date Needed is required./)).toBeInTheDocument();
+    expect(screen.getByText(/'Done' field is required./)).toBeInTheDocument();
 
     const explanationInput = screen.getByTestId(`${testId}-explanation`);
     fireEvent.change(explanationInput, { target: { value: "a".repeat(256) } });
