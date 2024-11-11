@@ -83,14 +83,16 @@ describe("MenuItemReviewEditPage tests", () => {
       axiosMock
         .onGet("/api/systemInfo")
         .reply(200, systemInfoFixtures.showingNeither);
-      axiosMock.onGet("/api/menuitemreview", { params: { id: 17 } }).reply(200, {
+      axiosMock
+        .onGet("/api/menuitemreview", { params: { id: 17 } })
+        .reply(200, {
           id: 17,
-        itemId: "1",
-        reviewerEmail: "gaucho@ucsb.edu",
-        stars: 3,
-        comments: "okay",
-        dateReviewed: "2022-02-02T00:00",
-      });
+          itemId: "1",
+          reviewerEmail: "gaucho@ucsb.edu",
+          stars: 3,
+          comments: "okay",
+          dateReviewed: "2022-02-02T00:00",
+        });
       axiosMock.onPut("/api/menuitemreview").reply(200, {
         id: 17,
         itemId: "2",
@@ -176,18 +178,18 @@ describe("MenuItemReviewEditPage tests", () => {
       expect(submitButton).toBeInTheDocument();
 
       fireEvent.change(itemIdField, { target: { value: 1 } });
-    fireEvent.change(reviewerEmailField, {
-      target: { value: "gaucho@ucsb.edu" },
-    });
-    fireEvent.change(starsField, { target: { value: 1 } });
-    fireEvent.change(commentsField, { target: { value: "okay" } });
-    fireEvent.change(dateReviewedField, {
-      target: { value: "2022-01-02T12:00" },
-    });
+      fireEvent.change(reviewerEmailField, {
+        target: { value: "gaucho@ucsb.edu" },
+      });
+      fireEvent.change(starsField, { target: { value: 1 } });
+      fireEvent.change(commentsField, { target: { value: "okay" } });
+      fireEvent.change(dateReviewedField, {
+        target: { value: "2022-01-02T12:00" },
+      });
 
-    expect(submitButton).toBeInTheDocument();
+      expect(submitButton).toBeInTheDocument();
 
-    fireEvent.click(submitButton);
+      fireEvent.click(submitButton);
 
       await waitFor(() => expect(mockToast).toBeCalled());
       expect(mockToast).toBeCalledWith(
