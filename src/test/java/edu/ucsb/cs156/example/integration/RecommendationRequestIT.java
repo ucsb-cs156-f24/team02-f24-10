@@ -1,6 +1,8 @@
 package edu.ucsb.cs156.example.integration;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -90,8 +92,9 @@ public class RecommendationRequestIT {
         public void an_admin_user_can_post_a_new_recommendationrequest() throws Exception {
                 // arrange
                 LocalDateTime ldt1 = LocalDateTime.parse("2022-01-03T00:00:00");
-                RecommendationRequest recommendationRequest = RecommendationRequest.builder()
-                                .requesterEmail("student1@ucsb.edu")
+                RecommendationRequest recommendationRequest1 = RecommendationRequest.builder()
+                                .id(1L)
+                                .requesterEmail("student2@ucsb.edu")
                                 .professorEmail("prof1@ucsb.edu")
                                 .explanation("test1")
                                 .dateRequested(ldt1)
@@ -101,12 +104,12 @@ public class RecommendationRequestIT {
 
                 // act
                 MvcResult response = mockMvc.perform(
-                                post("/api/recommendationrequests/post?id=1&requesterEmail=student1@ucsb.edu&professorEmail=prof1@ucsb.edu&explanation=test1&dateRequested=2022-01-03T00:00:00&dateNeeded=2022-01-03T00:00:00&done=true")
+                                post("/api/recommendationrequests/post?requesterEmail=student2@ucsb.edu&professorEmail=prof1@ucsb.edu&explanation=test1&dateRequested=2022-01-03T00:00:00&dateNeeded=2022-01-03T00:00:00&done=true")
                                                 .with(csrf()))
                                 .andExpect(status().isOk()).andReturn();
 
                 // assert
-                String expectedJson = mapper.writeValueAsString(recommendationRequest);
+                String expectedJson = mapper.writeValueAsString(recommendationRequest1);
                 String responseString = response.getResponse().getContentAsString();
                 assertEquals(expectedJson, responseString);
         }
