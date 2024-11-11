@@ -52,7 +52,7 @@ public class RecommendationRequestWebIT extends WebTestCase {
     public void regular_user_cannot_create_recommendationrequest() throws Exception {
         setupUser(false);
 
-        page.getByText("RecommendationRequests").click();
+        page.getByText("Recommendation Requests").click();
 
         assertThat(page.getByText("Create RecommendationRequest")).not().isVisible();
         assertThat(page.getByTestId("RecommendationRequestTable-cell-row-0-col-requesterEmail")).not().isVisible();
