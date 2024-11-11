@@ -28,8 +28,8 @@ public class RecommendationRequestWebIT extends WebTestCase {
         page.getByTestId("RecommendationRequestForm-requesterEmail").fill("student@ucsb.edu");
         page.getByTestId("RecommendationRequestForm-professorEmail").fill("prof@ucsb.edu");
         page.getByTestId("RecommendationRequestForm-explanation").fill("explanation");
-        page.getByTestId("RecommendationRequestForm-dateNeeded").fill("2021-06-01T12:00:00");
-        page.getByTestId("RecommendationRequestForm-dateRequested").fill("2021-05-01T12:00:00");
+        page.getByTestId("RecommendationRequestForm-dateNeeded").fill("2021-06-01T12:00");
+        page.getByTestId("RecommendationRequestForm-dateRequested").fill("2021-05-01T12:00");
         page.getByTestId("RecommendationRequestForm-done").selectOption("true");
         page.getByTestId("RecommendationRequestForm-submit").click();
 
