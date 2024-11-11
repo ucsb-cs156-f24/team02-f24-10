@@ -105,7 +105,7 @@ function RecommendationRequestForm({
           })}
         />
         <Form.Control.Feedback type="invalid">
-          {errors.dateRequested && "Date Requested is required. "}
+          {errors.dateRequested && "Date Requested is required."}
         </Form.Control.Feedback>
       </Form.Group>
 
@@ -115,10 +115,13 @@ function RecommendationRequestForm({
           id="dateNeeded"
           type="datetime-local"
           isInvalid={Boolean(errors.dateNeeded)}
-          {...register("dateNeeded", {})}
+          {...register("dateNeeded", {
+            required: true,
+            pattern: isodate_regex,
+          })}
         />
         <Form.Control.Feedback type="invalid">
-          {errors.dateRequested && "Date Needed is required. "}
+          {errors.dateNeeded && "Date Needed is required. "}
         </Form.Control.Feedback>
       </Form.Group>
 
@@ -139,7 +142,7 @@ function RecommendationRequestForm({
           <option value="true">True</option>
           <option value="false">False</option>
         </Form.Select>
-        <Form.Control.Feedback type="done">
+        <Form.Control.Feedback type="invalid">
           {errors.done?.message}
         </Form.Control.Feedback>
       </Form.Group>
