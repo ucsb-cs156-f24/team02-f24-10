@@ -37,7 +37,7 @@ public class RecommendationRequestWebIT extends WebTestCase {
                 .hasText("student@ucsb.edu");
 
         page.getByTestId("RecommendationRequestTable-cell-row-0-col-Edit-button").click();
-        assertThat(page.getByText("Edit RecommendationRequest")).isVisible();
+        assertThat(page.getByText("Edit Recommendation Request")).isVisible();
         page.getByTestId("RecommendationRequestForm-requesterEmail").fill("student2@ucsb.edu");
         page.getByTestId("RecommendationRequestForm-submit").click();
 
