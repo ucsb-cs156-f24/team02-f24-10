@@ -25,7 +25,7 @@ public class RecommendationRequestWebIT extends WebTestCase {
 
         page.getByText("Create Recommendation Request").click();
         assertThat(page.getByText("Create New Recommendation Request")).isVisible();
-        page.getByTestId("RecommendationRequestForm-rquesterEmail").fill("student@ucsb.edu");
+        page.getByTestId("RecommendationRequestForm-requesterEmail").fill("student@ucsb.edu");
         page.getByTestId("RecommendationRequestForm-professorEmail").fill("prof@ucsb.edu");
         page.getByTestId("RecommendationRequestForm-explanation").fill("explanation");
         page.getByTestId("RecommendationRequestForm-dateNeeded").fill("2021-06-01T12:00:00");
