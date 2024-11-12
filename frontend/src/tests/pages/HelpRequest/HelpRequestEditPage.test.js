@@ -151,6 +151,7 @@ describe("HelpRequestEditPage tests", () => {
       expect(requestTimeField).toHaveValue("2020-12-25T00:00");
       expect(solvedField).toHaveValue("true");
       expect(explanationField).toHaveValue("ground control to major tom");
+      expect(submitButton).toBeInTheDocument();
     });
 
     test("Changes when you click Update", async () => {
