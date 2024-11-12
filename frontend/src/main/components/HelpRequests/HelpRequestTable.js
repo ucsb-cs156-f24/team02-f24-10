@@ -69,7 +69,9 @@ export default function HelpRequestTable({ requests, currentUser }) {
       ButtonColumn("Delete", "danger", deleteCallback, "HelpRequestTable"),
     );
   }
-
+  requests.forEach((requests) => {
+    requests.solved = String(requests.solved);
+  });
   return (
     <OurTable data={requests} columns={columns} testid={"HelpRequestTable"} />
   );
