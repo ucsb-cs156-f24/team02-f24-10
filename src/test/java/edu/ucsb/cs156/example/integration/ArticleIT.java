@@ -60,7 +60,7 @@ public class ArticleIT {
   @Test
   public void test_that_logged_in_user_can_get_by_id_when_the_id_exists() throws Exception {
     // arrange
-    LocalDateTime dateAdded = LocalDateTime.now();
+    LocalDateTime dateAdded = LocalDateTime.parse("2022-01-04T00:00:00");
 
     Articles article = Articles.builder()
         .id(1L)
