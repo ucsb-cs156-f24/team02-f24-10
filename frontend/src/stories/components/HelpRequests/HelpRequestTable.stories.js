@@ -1,11 +1,11 @@
 import React from "react";
-import HelpRequestTable from "main/components/HelpRequest/HelpRequestTable";
-import { helpRequestFixtures } from "fixtures/helpRequestFixtures";
+import HelpRequestTable from "main/components/HelpRequests/HelpRequestTable";
+import { helpRequestsFixtures } from "fixtures/helpRequestFixtures";
 import { currentUserFixtures } from "fixtures/currentUserFixtures";
 import { http, HttpResponse } from "msw";
 
 export default {
-  title: "components/HelpRequest/HelpRequestTable",
+  title: "components/HelpRequests/HelpRequestTable",
   component: HelpRequestTable,
 };
 
@@ -16,19 +16,19 @@ const Template = (args) => {
 export const Empty = Template.bind({});
 
 Empty.args = {
-  dates: [],
+  requests: [],
 };
 
 export const ThreeItemsOrdinaryUser = Template.bind({});
 
 ThreeItemsOrdinaryUser.args = {
-  dates: helpRequestFixtures.threeReqs,
+  requests: helpRequestsFixtures.threeReqs,
   currentUser: currentUserFixtures.userOnly,
 };
 
 export const ThreeItemsAdminUser = Template.bind({});
 ThreeItemsAdminUser.args = {
-  dates: helpRequestFixtures.threeReqs,
+  requests: helpRequestsFixtures.threeReqs,
   currentUser: currentUserFixtures.adminUser,
 };
 
