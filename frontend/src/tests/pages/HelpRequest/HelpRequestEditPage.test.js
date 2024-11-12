@@ -84,21 +84,23 @@ describe("HelpRequestEditPage tests", () => {
         .onGet("/api/systemInfo")
         .reply(200, systemInfoFixtures.showingNeither);
       axiosMock.onGet("/api/helprequests", { params: { id: 17 } }).reply(200, {
-       id: 17,
-    requesterEmail: "foo@bar",
-    teamId: "foofoo",
-    tableOrBreakoutRoom: "foo2",
-    requestTime: "2020-12-25T00:00:00",
-    explanation: "ground control to major tom",
-    solved: true,});
+        id: 17,
+        requesterEmail: "foo@bar",
+        teamId: "foofoo",
+        tableOrBreakoutRoom: "foo2",
+        requestTime: "2020-12-25T00:00:00",
+        explanation: "ground control to major tom",
+        solved: true,
+      });
       axiosMock.onPut("/api/helprequests").reply(200, {
-      id: 17,
-          requesterEmail: "barfoo@foobar.net",
-          teamId: "barfoo",
-          tableOrBreakoutRoom: "t3",
-          explanation: "javascript is melting my brain",
-          solved: "false",
-          requestTime: "2022-01-02T12:00",});
+        id: 17,
+        requesterEmail: "barfoo@foobar.net",
+        teamId: "barfoo",
+        tableOrBreakoutRoom: "t3",
+        explanation: "javascript is melting my brain",
+        solved: "false",
+        requestTime: "2022-01-02T12:00",
+      });
     });
 
     const queryClient = new QueryClient();
@@ -126,25 +128,29 @@ describe("HelpRequestEditPage tests", () => {
       await screen.findByTestId("HelpRequestForm-requesterEmail");
 
       const idField = screen.getByTestId("HelpRequestForm-id");
-    const requesterEmailField = screen.getByTestId(
-      "HelpRequestForm-requesterEmail",
-    );
-    const teamIdField = screen.getByTestId("HelpRequestForm-teamId");
-    const tableOrBreakoutRoomField = screen.getByTestId(
-      "HelpRequestForm-tableOrBreakoutRoom",
-    );
-    const requestTimeField = screen.getByTestId("HelpRequestForm-requestTime");
-    const explanationField = screen.getByTestId("HelpRequestForm-explanation");
-    const solvedField = screen.getByTestId("HelpRequestForm-solved");
-    const submitButton = screen.getByTestId("HelpRequestForm-submit");
+      const requesterEmailField = screen.getByTestId(
+        "HelpRequestForm-requesterEmail",
+      );
+      const teamIdField = screen.getByTestId("HelpRequestForm-teamId");
+      const tableOrBreakoutRoomField = screen.getByTestId(
+        "HelpRequestForm-tableOrBreakoutRoom",
+      );
+      const requestTimeField = screen.getByTestId(
+        "HelpRequestForm-requestTime",
+      );
+      const explanationField = screen.getByTestId(
+        "HelpRequestForm-explanation",
+      );
+      const solvedField = screen.getByTestId("HelpRequestForm-solved");
+      const submitButton = screen.getByTestId("HelpRequestForm-submit");
 
       expect(idField).toHaveValue("17");
-        expect(requesterEmailField).toHaveValue("foo@bar");
-        expect(teamIdField).toHaveValue("foofoo");
-        expect(tableOrBreakoutRoomField).toHaveValue("foo2");
-        expect(requestTimeField).toHaveValue("2020-12-25T00:00");
-        expect(solvedField).toHaveValue("true");
-        expect(explanationField).toHaveValue("ground control to major tom");
+      expect(requesterEmailField).toHaveValue("foo@bar");
+      expect(teamIdField).toHaveValue("foofoo");
+      expect(tableOrBreakoutRoomField).toHaveValue("foo2");
+      expect(requestTimeField).toHaveValue("2020-12-25T00:00");
+      expect(solvedField).toHaveValue("true");
+      expect(explanationField).toHaveValue("ground control to major tom");
     });
 
     test("Changes when you click Update", async () => {
@@ -159,41 +165,45 @@ describe("HelpRequestEditPage tests", () => {
       await screen.findByTestId("HelpRequestForm-requesterEmail");
 
       const idField = screen.getByTestId("HelpRequestForm-id");
-    const requesterEmailField = screen.getByTestId(
-      "HelpRequestForm-requesterEmail",
-    );
-    const teamIdField = screen.getByTestId("HelpRequestForm-teamId");
-    const tableOrBreakoutRoomField = screen.getByTestId(
-      "HelpRequestForm-tableOrBreakoutRoom",
-    );
-    const requestTimeField = screen.getByTestId("HelpRequestForm-requestTime");
-    const explanationField = screen.getByTestId("HelpRequestForm-explanation");
-    const solvedField = screen.getByTestId("HelpRequestForm-solved");
-    const submitButton = screen.getByTestId("HelpRequestForm-submit");
+      const requesterEmailField = screen.getByTestId(
+        "HelpRequestForm-requesterEmail",
+      );
+      const teamIdField = screen.getByTestId("HelpRequestForm-teamId");
+      const tableOrBreakoutRoomField = screen.getByTestId(
+        "HelpRequestForm-tableOrBreakoutRoom",
+      );
+      const requestTimeField = screen.getByTestId(
+        "HelpRequestForm-requestTime",
+      );
+      const explanationField = screen.getByTestId(
+        "HelpRequestForm-explanation",
+      );
+      const solvedField = screen.getByTestId("HelpRequestForm-solved");
+      const submitButton = screen.getByTestId("HelpRequestForm-submit");
 
       expect(idField).toHaveValue("17");
-        expect(requesterEmailField).toHaveValue("foo@bar");
-        expect(teamIdField).toHaveValue("foofoo");
-        expect(requestTimeField).toHaveValue("2020-12-25T00:00");
-        expect(solvedField).toHaveValue("true");
-        expect(tableOrBreakoutRoomField).toHaveValue("foo2");
-        expect(explanationField).toHaveValue("ground control to major tom");
+      expect(requesterEmailField).toHaveValue("foo@bar");
+      expect(teamIdField).toHaveValue("foofoo");
+      expect(requestTimeField).toHaveValue("2020-12-25T00:00");
+      expect(solvedField).toHaveValue("true");
+      expect(tableOrBreakoutRoomField).toHaveValue("foo2");
+      expect(explanationField).toHaveValue("ground control to major tom");
 
       expect(submitButton).toBeInTheDocument();
 
-fireEvent.change(requesterEmailField, {
-      target: { value: "barfoo@foobar.net" },
-    });
-    fireEvent.change(teamIdField, { target: { value: "barfoo" } });
-    fireEvent.change(tableOrBreakoutRoomField, { target: { value: "t3" } });
-    fireEvent.change(requestTimeField, {
-      target: { value: "2022-01-02T12:00" },
-    });
-    fireEvent.change(explanationField, {
-      target: { value: "javascript is melting my brain" },
-    });
-    fireEvent.change(solvedField, { target: { value: false } });
-    fireEvent.click(submitButton);
+      fireEvent.change(requesterEmailField, {
+        target: { value: "barfoo@foobar.net" },
+      });
+      fireEvent.change(teamIdField, { target: { value: "barfoo" } });
+      fireEvent.change(tableOrBreakoutRoomField, { target: { value: "t3" } });
+      fireEvent.change(requestTimeField, {
+        target: { value: "2022-01-02T12:00" },
+      });
+      fireEvent.change(explanationField, {
+        target: { value: "javascript is melting my brain" },
+      });
+      fireEvent.change(solvedField, { target: { value: false } });
+      fireEvent.click(submitButton);
 
       await waitFor(() => expect(mockToast).toBeCalled());
       expect(mockToast).toBeCalledWith(
