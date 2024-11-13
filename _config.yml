@@ -23,4 +23,4 @@ repo_name: "TBD"
 repo: ucsb-cs156-f24/team02-f24-10
 owner: ucsb-cs156-f24
 repo_name: team02-f24-10
-pull_requests: [{"author":{"id":"MDQ6VXNlcjcyODQwNDQz","is_bot":false,"login":"rranu","name":"Rajvir Ranu"},"headRefName":"rr-134-end2endtest-helpreq","number":136,"title":"Added end-to-end test for HelpRequest","url":"https://github.com/ucsb-cs156-f24/team02-f24-10/pull/136"}]
+pull_requests: []
