@@ -1,53 +1,138 @@
-import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
-import HelpRequestForm from "main/components/HelpRequests/HelpRequestForm";
-import { Navigate } from "react-router-dom";
-import { useBackendMutation } from "main/utils/useBackend";
-import { toast } from "react-toastify";
+import { render, screen, waitFor, fireEvent } from "@testing-library/react";
+import HelpRequestCreatePage from "main/pages/HelpRequest/HelpRequestCreatePage";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { MemoryRouter } from "react-router-dom";
 
-export default function HelpRequestCreatePage({ storybook = false }) {
-  const objectToAxiosParams = (helpRequest) => ({
-    url: "/api/helprequests/post",
-    method: "POST",
-    params: {
-      requesterEmail: helpRequest.requesterEmail,
-      teamId: helpRequest.teamId,
-      tableOrBreakoutRoom: helpRequest.tableOrBreakoutRoom,
-      requestTime: helpRequest.requestTime,
-      explanation: helpRequest.explanation,
-      solved: helpRequest.solved,
+import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
+import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
+import axios from "axios";
+import AxiosMockAdapter from "axios-mock-adapter";
+
+const mockToast = jest.fn();
+jest.mock("react-toastify", () => {
+  const originalModule = jest.requireActual("react-toastify");
+  return {
+    __esModule: true,
+    ...originalModule,
+    toast: (x) => mockToast(x),
+  };
+});
+
+const mockNavigate = jest.fn();
+jest.mock("react-router-dom", () => {
+  const originalModule = jest.requireActual("react-router-dom");
+  return {
+    __esModule: true,
+    ...originalModule,
+    Navigate: (x) => {
+      mockNavigate(x);
+      return null;
     },
+  };
+});
+
+describe("HelpRequestCreatePage tests", () => {
+  const axiosMock = new AxiosMockAdapter(axios);
+
+  beforeEach(() => {
+    axiosMock.reset();
+    axiosMock.resetHistory();
+    axiosMock
+      .onGet("/api/currentUser")
+      .reply(200, apiCurrentUserFixtures.userOnly);
+    axiosMock
+      .onGet("/api/systemInfo")
+      .reply(200, systemInfoFixtures.showingNeither);
   });
 
-  const onSuccess = (helpRequest) => {
-    toast(
-      `New helpRequest Created - id: ${helpRequest.id} email: ${helpRequest.requesterEmail}`,
+  test("renders without crashing", async () => {
+    const queryClient = new QueryClient();
+    render(
+      <QueryClientProvider client={queryClient}>
+        <MemoryRouter>
+          <HelpRequestCreatePage />
+        </MemoryRouter>
+      </QueryClientProvider>,
     );
-  };
 
-  const mutation = useBackendMutation(
-    objectToAxiosParams,
-    { onSuccess },
-    // Stryker disable next-line all : hard to set up test for caching
-    ["/api/helprequests/all"],
-  );
+    await waitFor(() => {
+      expect(
+        screen.getByTestId("HelpRequestForm-requesterEmail"),
+      ).toBeInTheDocument();
+    });
+  });
 
-  const { isSuccess } = mutation;
+  test("when you fill in the form and hit submit, it makes a request to the backend", async () => {
+    const queryClient = new QueryClient();
+    const helpRequest = {
+      id: 1,
+      requesterEmail: "foo@bar",
+      teamId: "foofoo",
+      tableOrBreakoutRoom: "foo2",
+      requestTime: "2020-12-25T00:00:00",
+      explanation: "ground control to major tom",
+      solved: true,
+    };
 
-  const onSubmit = async (data) => {
-    mutation.mutate(data);
-  };
+    axiosMock.onPost("/api/helprequests/post").reply(202, helpRequest);
 
-  if (isSuccess && !storybook) {
-    return <Navigate to="/helprequests" />;
-  }
+    render(
+      <QueryClientProvider client={queryClient}>
+        <MemoryRouter>
+          <HelpRequestCreatePage />
+        </MemoryRouter>
+      </QueryClientProvider>,
+    );
 
-  return (
-    <BasicLayout>
-      <div className="pt-2">
-        <h1>Create New HelpRequest</h1>
+    await waitFor(() => {
+      expect(
+        screen.getByTestId("HelpRequestForm-requesterEmail"),
+      ).toBeInTheDocument();
+    });
 
-        <HelpRequestForm submitAction={onSubmit} />
-      </div>
-    </BasicLayout>
-  );
-}
+    const requesterEmailField = screen.getByTestId(
+      "HelpRequestForm-requesterEmail",
+    );
+    const teamIdField = screen.getByTestId("HelpRequestForm-teamId");
+    const tableOrBreakoutRoomField = screen.getByTestId(
+      "HelpRequestForm-tableOrBreakoutRoom",
+    );
+    const requestTimeField = screen.getByTestId("HelpRequestForm-requestTime");
+    const explanationField = screen.getByTestId("HelpRequestForm-explanation");
+    const solvedField = screen.getByTestId("HelpRequestForm-solved");
+    const submitButton = screen.getByTestId("HelpRequestForm-submit");
+
+    fireEvent.change(requesterEmailField, { target: { value: "foo@bar" } });
+    fireEvent.change(teamIdField, { target: { value: "foofoo" } });
+    fireEvent.change(tableOrBreakoutRoomField, {
+      target: { value: "foo2" },
+    });
+    fireEvent.change(requestTimeField, {
+      target: { value: "2020-12-25T00:00:00" },
+    });
+    fireEvent.change(explanationField, {
+      target: { value: "ground control to major tom" },
+    });
+    fireEvent.change(solvedField, { target: { value: true } });
+
+    expect(submitButton).toBeInTheDocument();
+
+    fireEvent.click(submitButton);
+
+    await waitFor(() => expect(axiosMock.history.post.length).toBe(1));
+
+    expect(axiosMock.history.post[0].params).toEqual({
+      requesterEmail: "foo@bar",
+      teamId: "foofoo",
+      tableOrBreakoutRoom: "foo2",
+      requestTime: "2020-12-25T00:00",
+      explanation: "ground control to major tom",
+      solved: "true",
+    });
+
+    expect(mockToast).toBeCalledWith(
+      "New helpRequest Created - id: 1 email: foo@bar",
+    );
+    expect(mockNavigate).toBeCalledWith({ to: "/helprequests" });
+  });
+});
