@@ -1,44 +1,53 @@
-import { render, screen } from "@testing-library/react";
-import HelpRequestCreatePage from "main/pages/HelpRequest/HelpRequestCreatePage";
-import { QueryClient, QueryClientProvider } from "react-query";
-import { MemoryRouter } from "react-router-dom";
+import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
+import HelpRequestForm from "main/components/HelpRequests/HelpRequestForm";
+import { Navigate } from "react-router-dom";
+import { useBackendMutation } from "main/utils/useBackend";
+import { toast } from "react-toastify";
 
-import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
-import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
-import axios from "axios";
-import AxiosMockAdapter from "axios-mock-adapter";
+export default function HelpRequestCreatePage({ storybook = false }) {
+  const objectToAxiosParams = (helpRequest) => ({
+    url: "/api/helprequests/post",
+    method: "POST",
+    params: {
+      requesterEmail: helpRequest.requesterEmail,
+      teamId: helpRequest.teamId,
+      tableOrBreakoutRoom: helpRequest.tableOrBreakoutRoom,
+      requestTime: helpRequest.requestTime,
+      explanation: helpRequest.explanation,
+      solved: helpRequest.solved,
+    },
+  });
 
-describe("HelpRequestCreatePage tests", () => {
-  const axiosMock = new AxiosMockAdapter(axios);
-
-  const setupUserOnly = () => {
-    axiosMock.reset();
-    axiosMock.resetHistory();
-    axiosMock
-      .onGet("/api/currentUser")
-      .reply(200, apiCurrentUserFixtures.userOnly);
-    axiosMock
-      .onGet("/api/systemInfo")
-      .reply(200, systemInfoFixtures.showingNeither);
+  const onSuccess = (helpRequest) => {
+    toast(
+      `New helpRequest Created - id: ${helpRequest.id} email: ${helpRequest.requesterEmail}`,
+    );
   };
 
-  const queryClient = new QueryClient();
-  test("Renders expected content", async () => {
-    // arrange
+  const mutation = useBackendMutation(
+    objectToAxiosParams,
+    { onSuccess },
+    // Stryker disable next-line all : hard to set up test for caching
+    ["/api/helprequests/all"],
+  );
 
-    setupUserOnly();
+  const { isSuccess } = mutation;
 
-    // act
-    render(
-      <QueryClientProvider client={queryClient}>
-        <MemoryRouter>
-          <HelpRequestCreatePage />
-        </MemoryRouter>
-      </QueryClientProvider>,
-    );
+  const onSubmit = async (data) => {
+    mutation.mutate(data);
+  };
 
-    // assert
+  if (isSuccess && !storybook) {
+    return <Navigate to="/helprequests" />;
+  }
 
-    await screen.findByText("Create page not yet implemented");
-  });
-});
+  return (
+    <BasicLayout>
+      <div className="pt-2">
+        <h1>Create New HelpRequest</h1>
+
+        <HelpRequestForm submitAction={onSubmit} />
+      </div>
+    </BasicLayout>
+  );
+}
